@@ -12,21 +12,20 @@ module Restaurant
       @file = file
       @restaurant_list = {}
       @items = []
-      @item_search = []
-      @meal_combo = []
-      @results = []
       puts "Parsing and loading file data: #{file} ... "
       parse_file
     end
 
     def	best_price_restaurant(item_labels)
+      @item_search, @meal_combo, @results = [], [], []
+      
       if item_present?(item_labels)
         search_meal_combo
         separate_meal_combo
         calculate_minimum_price
         output_result
       else
-        puts "Menu Item not found"
+        "Menu item not found"
       end
     end
     

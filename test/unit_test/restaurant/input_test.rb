@@ -1,12 +1,24 @@
 require File.dirname(__FILE__) + '/../../test_helper'
 
-# This is the test Class for Restaurant::Search class
+# This is the test Class for Restaurant::Input class
 # containing unit test cases for the same.
 
 class Restaurant::InputTest < Test::Unit::TestCase
   def setup
     @sample1 = File.dirname(__FILE__) + '/../../../sample_data.csv'
     @sample2 = File.dirname(__FILE__) + '/../../../sample_data_2.csv'
+  end
+  
+  def test_exception_in_case_of_file_ioerror
+    assert_raise Restaurant::FileReadError do 
+      Restaurant.input(File.dirname(__FILE__) + '/../../../sample.csv', %w(burger tofu_log))
+    end
+  end
+  
+  def test_exception_in_case_of_file_type_error
+    assert_raise Restaurant::FileTypeError do 
+      Restaurant.input(File.dirname(__FILE__) + '/../../../problem.txt', %w(burger tofu_log))
+    end
   end
   
   def test_min_price_for_burger_tofu_log
