@@ -6,6 +6,9 @@ require 'set'
 
 module Restaurant
   class << self
+    
+    # input: file: csv file, items: %w(search menu lables)
+    # creates Restaurant::Search object and returns the best price restaurant else return false
     def input(file, items)      
       @file = file
       @labels = items
@@ -17,8 +20,8 @@ module Restaurant
     
     protected
     
+    # check for errors in the input file
     def check_file_errors
-      # check for errors in the arguments
       raise Restaurant::FileReadError unless File.exist? @file
       raise Restaurant::FileTypeError unless File.extname(@file) == ".csv"
       raise Restaurant::FileReadError unless File.size? @file

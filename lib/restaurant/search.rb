@@ -15,10 +15,10 @@ module Restaurant
       puts "Parsing and loading file data: #{file} ... "
       parse_file
     end
-
+    
+    # instance methos to find the best price for the given item lables array
     def	best_price_restaurant(item_labels)
       @item_search, @meal_combo, @results = [], [], []
-      
       if item_present?(item_labels)
         search_meal_combo
         separate_meal_combo
@@ -50,11 +50,13 @@ module Restaurant
       end
     end
 
+    # perform minimum validation checks on the retaurant_id, price and item being added to the list
     def validate(rid, price, item)
       flag = false
       flag = true if rid > 0 && price > 0.0 && !item.nil? && !item.empty?
     end
 
+    # add the restaurant_id, price and menu_item to the restaurant_list hash
     def	load(restaurant_id, price, menu_item)
       item_id = item(menu_item)
       @restaurant_list[restaurant_id] = {} unless @restaurant_list.has_key? restaurant_id
@@ -134,6 +136,8 @@ module Restaurant
 	    price.empty? ? 0 : price.sort.first
 		end
 		
+		# returns nil if @results are empty
+		# returns the restaurant_id, min_price from the @results array of array 
 		def output_result
 		  return nil if @results.empty?
 		  restaurant_id = @results[0][0]
@@ -144,5 +148,5 @@ module Restaurant
 		  [restaurant_id, min_price]
 		end
 
-	end # class mapping
+	end # class search
 end # module restaurant
