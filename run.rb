@@ -4,4 +4,4 @@
 require File.dirname(__FILE__) + '/lib/restaurant.rb'
 
 raise Restaurant::InputError if ARGV.size < 2
-Restaurant.input(ARGV[0], ARGV[1..-1])
+puts Restaurant.input(ARGV[0], ARGV[1..-1])

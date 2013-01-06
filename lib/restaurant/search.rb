@@ -13,7 +13,7 @@ module Restaurant
       @file = file
       @restaurant_list = {}
       @items = []
-      puts "Parsing and loading file data: #{file} ... "
+      #puts "Parsing and loading file data: #{file} ... "
       parse_file
     end
     
@@ -149,5 +149,5 @@ module Restaurant
       [restaurant_id, min_price]
     end
 
-	end # class search
+  end # class search
 end # module restaurant
